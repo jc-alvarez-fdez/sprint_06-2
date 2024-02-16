@@ -1,0 +1,58 @@
+<div class="row" id="listat_pptos">
+  <h3>Pressupostos en curs:</h3>
+
+  <nav>
+    <div>
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Buscar por nombre">
+      <button (click)="filterByName()"><i class="bi bi-search"></i></button>
+
+    </div>
+
+    <div>
+      <button (click)="orderByDate()">
+        Data
+        <span *ngIf="orderBy === 'date' && orderByDateAsc"><span class="blau">&#9650;</span></span>
+        <span *ngIf="orderBy === 'date' && !orderByDateAsc"><span class="blau">&#9660;</span></span>
+      </button>
+
+      <button (click)="orderByName()">
+        Nom
+        <span *ngIf="orderBy === 'name' && orderByNameAsc"><span class="blau">&#9650;</span></span>
+        <span *ngIf="orderBy === 'name' && !orderByNameAsc"><span class="blau">&#9660;</span></span>
+      </button>
+
+      <button (click)="orderByPrice()">
+        Preu
+        <span *ngIf="orderBy === 'price' && orderByPriceAsc"><span class="blau">&#9650;</span></span>
+        <span *ngIf="orderBy === 'price' && !orderByPriceAsc"><span class="blau">&#9660;</span></span>
+      </button>
+
+    </div>
+  </nav>
+
+  @for(ppto of pptosDemanats; track ppto.nom) {
+
+    <div class="row shadow rounded">
+      <div class="col-6">
+        <h5>{{ ppto.nom }}</h5>
+        <p>{{ ppto.email }}</p>
+        <p>{{ ppto.tel }}</p>
+        <p>Data: {{ ppto.data | date:'dd/MM/yyyy' }}</p>
+      </div>
+
+      <div class="col-4">
+        <p><strong>Serveis contractats:</strong></p>
+        <p *ngIf="ppto.seo">Seo</p>
+        <p *ngIf="ppto.ads">Ads</p>
+        <p *ngIf="ppto.web">Web<br>({{ ppto.numPagines }}&nbsp;pàgines, {{ ppto.numIdiomes }}&nbsp;idiomes)</p>
+
+      </div>
+      <div class="col-2">
+        <p>Preu total:<br>
+       <span>{{ ppto.totPpto }}</span> €</p>
+      </div>
+    </div>
+  }
+</div>
+
+

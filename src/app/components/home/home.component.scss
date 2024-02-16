@@ -1,0 +1,87 @@
+.row {
+  margin: 10px auto;
+  padding: 20px 10px;
+  align-items: center;
+}
+
+
+
+span {
+  color: grey;
+  font-weight: bold;
+  font-size: 200%;
+}
+
+input{
+  color: var(--bs-blue);
+}
+
+
+#datos_client {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+    input {
+      width: 100%;
+    }
+
+    .nom {
+      padding: 0;
+    }
+    .tel {
+      padding: 0;
+      align-items: flex-start;
+
+
+      .div {
+        padding: 0;
+        margin-right: 5px;
+      }
+
+      .col-3 {
+        padding: 0;
+        margin-right: 10px;
+      }
+
+      .col:last-of-type {
+        padding: 0;
+        margin-left: 5px;
+      }
+
+    }
+
+    .mail {
+      background-color:rgb(34, 117, 89);
+    }
+
+    .bton_ppto {
+      display: block;
+      margin: 10px auto;
+      width: 40%;
+    }
+  }
+
+
+  label {
+    margin: 10px 10px 3px 0;
+    padding: 0
+  }
+
+  .error  {
+    text-align: center;
+    width: 100%;
+    padding: 0.35rem;
+    font-size: 0.875em;
+    font-weight: 600;
+    //background-color: #dc35461e;
+    border-radius: 0 0 5px 5px;
+    margin-top: -5px;
+    color:#dc3546;
+  }
+
+
+
+

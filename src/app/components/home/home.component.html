@@ -1,0 +1,130 @@
+<div class="container">
+  <header class="container text-center p-3">
+    <h1>Aconsegueix la millor qualitat</h1>
+  </header>
+
+  <div class="row align-items-center">
+    <form [formGroup]="pptoForm" class="row" (submit)="demanarPpto($event)">
+
+      <div class="row shadow rounded">
+        <div class="col-6">
+          <h4>{{ serveis[0].id }}</h4>
+          <p>{{ serveis[0].describe }}</p>
+        </div>
+        <div class="col-3">
+          <p><span>{{ serveis[0].preu }}</span> €</p>
+        </div>
+        <div class="col-3 form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="Seo" formControlName="seo"
+            (change)="calcularTotalPpto()">
+          <label for="Seo" class="form-check-label">
+            Afegir
+          </label>
+        </div>
+      </div>
+
+      <div class="row shadow rounded">
+        <div class="col-6">
+          <h4>{{ serveis[1].id }}</h4>
+          <p>{{ serveis[1].describe }}</p>
+        </div>
+        <div class="col-3">
+          <p><span>{{ serveis[1].preu }}</span> €</p>
+        </div>
+        <div class="col-3 form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="Ads" formControlName="ads"
+            (change)="calcularTotalPpto()">
+          <label for="Ads" class="form-check-label">
+            Afegir
+          </label>
+        </div>
+      </div>
+
+      <div class="row shadow rounded">
+        <div class="col-6">
+          <h4>{{ serveis[2].id }}</h4>
+          <p>{{ serveis[2].describe }}</p>
+        </div>
+        <div class="col-3">
+          <p><span>{{ serveis[2].preu }}</span> €</p>
+        </div>
+        <div class="col-3 form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="Web" formControlName="web"
+            (change)="calcularTotalPpto()">
+          <label for="Web" class="form-check-label">
+            Afegir
+          </label>
+
+          <app-panel *ngIf="pptoForm.get('serveisForm.Web.enabled')?.value" class="align-self-end"></app-panel>
+        </div>
+
+        <div class="row">
+          <ng-container *ngIf="pptoForm.get('web')!.value">
+            <app-panel [paginesPreu]="pptoForm.get('numPagines')!.value"
+              [idiomesPreu]="pptoForm.get('numIdiomes')!.value" (paginesCanvi)="onPaginesCanvi($event)"
+              (idiomesCanvi)="onIdiomesCanvi($event)" (totalPressupostCanvi)="calcularTotalPpto()">
+            </app-panel>
+          </ng-container>
+        </div>
+
+      </div>
+
+
+
+      <div class="d-flex justify-content-end col-12 m-3 align-items-center">
+        <h4 class="m-2">Preu pressupostat:</h4>
+        <p class="m-2"><span>{{ pptoForm.get('totPpto')!.value.toFixed(2) }}</span> €</p>
+      </div>
+      <div class="error">
+        @if (this.pptoForm.get('totPpto')?.status === 'INVALID') {
+          <p>Ha de sel·leccionar almenys 1 servei</p>
+        }
+      </div>
+
+      <div class="row shadow rounded">
+        <h4>Demanar pressupost</h4>
+        <div class="row" id="datos_client">
+          <div class="col nom">
+            <label for="nom">Nom i cognoms:</label><br>
+            <input type="text" name="nom" formControlName="nom" id="nom" placeholder="Nom Cognom Cognom">
+            <div class="error">
+              @if (this.pptoForm.get('nom')?.touched && this.pptoForm.get('nom')?.status === 'INVALID') {
+                <p>El nom es obligatori i ha de tenir mes de 3 caracters</p>
+              }
+            </div>
+         </div>
+         <div class="row tel">
+            <div class="col-3 ">
+              <label for="tel">Telefon:</label><br>
+              <input type="text" name="tel" formControlName="tel" id="tel" placeholder="000000000">
+              <div class="error">
+                @if (this.pptoForm.get('tel')?.touched && this.pptoForm.get('tel')?.status === 'INVALID') {
+                  <p>Telèfon de 9 cifres</p>
+                }
+              </div>
+            </div>
+            <div class="col">
+              <label for="email">E-mail:</label><br>
+              <input type="email" name="email" formControlName="email" id="email" placeholder="nom_usuari@dom">
+              <div class="error">
+                @if (this.pptoForm.get('email')?.touched && this.pptoForm.get('email')?.status === 'INVALID') {
+                  <p>Introdueix un mail amb un format vàlid</p>
+                }
+              </div>
+            </div>
+        </div>
+        <button class="btn btn-primary bton_ppto" type="button" (click)="demanarPpto($event)" [disabled]="pptoForm.invalid">Sol·licitar pressupost</button>
+      </div>
+
+      </div>
+
+    </form>
+
+    <hr>
+
+    <div class="row">
+     <app-list-pptos></app-list-pptos>
+    </div>
+
+  </div>
+

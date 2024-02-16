@@ -1,0 +1,56 @@
+
+#listat_pptos {
+padding: 0;
+
+.row {
+  margin: 10px auto;
+  padding: 20px 10px;
+  align-items: stretch;
+}
+}
+button {
+  border: none;
+  background-color: initial;
+  margin-left: 10px
+ }
+
+ h3 {
+  margin: 20px 0 ;
+ }
+
+ nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+
+ }
+
+ .blau, i {
+  color: var(--bs-blue);
+ }
+
+h5 {
+  font-size: 1.12rem;
+  font-weight: 600;
+}
+ p {
+    margin-bottom: 0.2rem;
+    color:grey;
+ }
+strong {
+color: var(--bs-blue);
+}
+
+.col-2 {
+  text-align: center;
+    span {
+      font-size: 150%;
+      font-weight: 600;
+    }
+
+    p {
+      margin-top: 40%;
+      line-height: 1.4em;
+    }
+  }
+
